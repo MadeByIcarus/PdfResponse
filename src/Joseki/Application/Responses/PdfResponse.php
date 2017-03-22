@@ -421,7 +421,7 @@ class PdfResponse extends Nette\Object implements Nette\Application\IResponse
         if (!$this->mPDF instanceof mPDF) {
             $margins = $this->getMargins();
 
-            $mpdf = new mPDF(
+            $mpdf = new mPDF([
                 'utf-8', // string $codepage
                 $this->pageFormat, // mixed $format
                 '', // float $default_font_size
@@ -433,7 +433,7 @@ class PdfResponse extends Nette\Object implements Nette\Application\IResponse
                 $margins["header"], // float $margin_header
                 $margins["footer"], // float $margin_footer
                 $this->pageOrientation
-            );
+            ]);
 
             $this->mPDF = $mpdf;
         }
