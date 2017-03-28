@@ -421,19 +421,20 @@ class PdfResponse extends Nette\Object implements Nette\Application\IResponse
         if (!$this->mPDF instanceof mPDF) {
             $margins = $this->getMargins();
 
-            $mpdf = new mPDF([
-                'utf-8', // string $codepage
-                $this->pageFormat, // mixed $format
-                '', // float $default_font_size
-                '', // string $default_font
-                $margins["left"], // float $margin_left
-                $margins["right"], // float $margin_right
-                $margins["top"], // float $margin_top
-                $margins["bottom"], // float $margin_bottom
-                $margins["header"], // float $margin_header
-                $margins["footer"], // float $margin_footer
-                $this->pageOrientation
-            ]);
+            $constructor = [
+                'mode' => 'utf-8', // string $codepage
+                'format' => $this->pageFormat, // mixed $format
+                'default_font_size' => '', // float $default_font_size
+                'default_font' => '', // string $default_font
+                'margin_left' => $margins["left"], // float $margin_left
+                'margin_right' => $margins["right"], // float $margin_right
+                'margin_top' => $margins["top"], // float $margin_top
+                'margin_bottom' => $margins["bottom"], // float $margin_bottom
+                'margin_header' => $margins["header"], // float $margin_header
+                'margin_footer' => $margins["footer"], // float $margin_footer
+                'orientation' => $this->pageOrientation
+            ];
+            $mpdf = new mPDF($constructor);
 
             $this->mPDF = $mpdf;
         }
