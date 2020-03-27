@@ -37,8 +37,10 @@ use Symfony\Component\DomCrawler\Crawler;
  * @property bool $ignoreStylesInHTMLDocument
  * @method onBeforeComplete($mpdf) @internal
  */
-class PdfResponse extends Nette\Object implements Nette\Application\IResponse
+class PdfResponse implements Nette\Application\IResponse
 {
+    use Nette\SmartObject;
+
     /** possible save modes */
     const INLINE = "I";
 
